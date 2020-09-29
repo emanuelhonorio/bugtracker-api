@@ -19,6 +19,15 @@ class Database {
   initSequelize() {
     this.connection = new Sequelize(sequelizeConfig);
 
+    this.connection.sync().then(
+      function () {
+        console.log("DB connection sucessful.");
+      },
+      function (err) {
+        console.log("Error on connecion to database: ", err);
+      }
+    );
+
     models.map((model) => model.init(this.connection));
     models.map(
       (model) => model.associate && model.associate(this.connection.models)
