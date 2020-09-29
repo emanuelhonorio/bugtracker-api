@@ -26,7 +26,7 @@ class Database {
   }
 
   initMongo() {
-    mongoose.connect("mongodb://localhost/bugtracker", {
+    mongoose.connect(process.env.MONGO_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,

@@ -1,14 +1,14 @@
 const { Router } = require("express");
 const routes = new Router();
 
-const UserController = require("./src/controllers/user-controller");
-const AuthController = require("./src/controllers/auth-controller");
-const ProjectController = require("./src/controllers/project-controller");
-const BugController = require("./src/controllers/bug-controller");
-const InviteController = require("./src/controllers/invite-controller");
-const MemberController = require("./src/controllers/member-controller");
-const NotificationController = require("./src/controllers/notification-controller");
-const AuthMiddleware = require("./src/middlewares/auth-middleware");
+const UserController = require("./controllers/user-controller");
+const AuthController = require("./controllers/auth-controller");
+const ProjectController = require("./controllers/project-controller");
+const BugController = require("./controllers/bug-controller");
+const InviteController = require("./controllers/invite-controller");
+const MemberController = require("./controllers/member-controller");
+const NotificationController = require("./controllers/notification-controller");
+const AuthMiddleware = require("./middlewares/auth-middleware");
 
 routes.get("/", (req, res) => {
   return res.status(200).json({ running: true });
