@@ -34,6 +34,13 @@ class UserController {
 
     try {
       const { name, email, password, image_url } = req.body;
+
+      const userWithSameEmail = await User.findOne({ where: { email } });
+
+      if (userWithSameEmail) {
+        return res.status(400).json({ error: "Email already in use" });
+      }
+
       const { id } = await User.create({ name, email, password, image_url });
       return res.status(200).json({ user: { id, name, email, image_url } });
     } catch (err) {
