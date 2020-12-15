@@ -8,6 +8,8 @@ Esse **BugTracker** foi um projeto **planejado e desenvolvido por mim** e n√£o √
 
 Link : https://bugtracker-ui.herokuapp.com/
 
+![Demo](docs/demo.gif?raw=true "Demo")
+
 ## Front-end Repository
 
 Link: https://github.com/emanuelhonorio/bugtracker-web
