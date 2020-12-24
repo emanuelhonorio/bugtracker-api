@@ -3,6 +3,7 @@ const Yup = require("yup");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const jwtConfig = require("../config/jwtConfig");
+const demoUserCredentials = require('../config/demoUser');
 
 class AuthController {
   async authenticate(req, res, next) {
@@ -47,6 +48,36 @@ class AuthController {
       next(err);
     }
   }
+
+  async authenticateAsDemo(req, res, next) {
+    /* Validating user */
+    const { email } = demoUserCredentials;
+    const demoUser = await User.findOne({ where: { email } });
+
+    if (!demoUser) {
+      return res.status(401).json({ error: "Demo user not found" });
+    }
+
+    try {
+      const token = await jwt.sign({ id: demoUser.id }, jwtConfig.secret, {
+        expiresIn: jwtConfig.expiresIn,
+      });
+
+      return res.status(200).json({
+        user: {
+          id: demoUser.id,
+          name: demoUser.name,
+          email,
+          image_url: demoUser.image_url,
+        },
+        access_token: token,
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+
 }
 
 module.exports = new AuthController();

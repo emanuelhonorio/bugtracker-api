@@ -15,6 +15,7 @@ routes.get("/", (req, res) => {
 });
 routes.post("/signup", UserController.store);
 routes.post("/signin", AuthController.authenticate);
+routes.post("/signin/demo", AuthController.authenticateAsDemo);
 
 routes.use(AuthMiddleware);
 

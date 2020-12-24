@@ -4,6 +4,8 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const cors = require("cors");
 
+console.log(process.env.DB_DIALECT)
+
 const routes = require("./routes");
 
 class App {
